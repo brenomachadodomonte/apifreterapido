@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import { QuotationsModule } from './quotations/quotations.module';
 
 async function bootstrap() {
   const logger = new Logger();
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(QuotationsModule);
   app.useGlobalPipes(new ValidationPipe());
 
   const port = 3000;
