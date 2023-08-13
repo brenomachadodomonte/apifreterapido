@@ -1,20 +1,25 @@
-import { Controller, Get, Logger, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
 import { QuotationsService } from './quotations.service';
+import { GetMetricsInput } from './dto/get-metrics.input';
+import { CreateQuotationInput } from './dto/create-quotation.input';
+import { CreateQuotationOutput } from './dto/create-quotation.output';
 
 @Controller()
 export class QuotationsController {
-  private logger = new Logger('QuotationsController');
+  private logger = new Logger(QuotationsController.name);
   constructor(private readonly service: QuotationsService) {}
 
   @Post('/quote')
-  createQuotation() {
-    this.logger.verbose('User creating a quotation');
-    return this.service.hello();
+  createQuotation(
+    @Body() input: CreateQuotationInput,
+  ): Promise<CreateQuotationOutput> {
+    this.logger.verbose(`POST /quote Body: ${JSON.stringify(input)}`);
+    return this.service.createQuotation(input);
   }
 
   @Get('/metrics')
-  getQuotationMetrics(@Query('last_quotes') lastQuotes: number) {
-    this.logger.verbose(`User getting metrics. Last quotes: ${lastQuotes}`);
+  getQuotationMetrics(@Query() input: GetMetricsInput) {
+    this.logger.verbose(`GET /metrics Query: ${JSON.stringify(input)}`);
     return this.service.hello();
   }
 }
