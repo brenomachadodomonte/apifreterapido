@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { HttpService } from '@nestjs/axios';
 import { Carrier, CreateQuotationOutput } from './dto/create-quotation.output';
 import { CreateQuotationInput } from './dto/create-quotation.input';
+import { FreterapidoService } from '../freterapido/freterapido.service';
 
 @Injectable()
 export class QuotationsService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(private readonly freteRapidoService: FreterapidoService) {}
   hello() {
     return 'Hello Quotations';
   }
@@ -14,6 +14,8 @@ export class QuotationsService {
     input: CreateQuotationInput,
   ): Promise<CreateQuotationOutput> {
     // Call FRETE RÁPIDO API
+    const result = await this.freteRapidoService.callCotacaoFreteV3(input);
+    console.log(result);
     // SAVE RESULT DATABASE
     // RETURN DTO
     const carrier = new Carrier();

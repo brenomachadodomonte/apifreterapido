@@ -3,6 +3,7 @@ import { QuotationsService } from './quotations.service';
 import { QuotationsController } from './quotations.controller';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { FreterapidoService } from '../freterapido/freterapido.service';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     HttpModule,
   ],
-  providers: [QuotationsService],
+  providers: [QuotationsService, FreterapidoService],
   controllers: [QuotationsController],
 })
 export class QuotationsModule {}
