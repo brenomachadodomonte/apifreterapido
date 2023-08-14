@@ -5,6 +5,8 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { FreterapidoService } from '../freterapido/freterapido.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { QuotationEntity } from './quotation.entity';
+import { QuotationItemEntity } from './quotation-item.entity';
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           database: configService.get('DB_NAME'),
           autoLoadEntities: true,
           synchronize: true,
+          entities: [QuotationEntity, QuotationItemEntity],
         };
       },
     }),

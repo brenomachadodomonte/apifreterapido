@@ -12,6 +12,8 @@ export class QuotationEntity {
   @Column()
   zipcode: string;
 
-  @OneToMany(() => QuotationItemEntity, (item) => item.quotation)
+  @OneToMany(() => QuotationItemEntity, (item) => item.quotation, {
+    cascade: ['insert'],
+  })
   items: QuotationItemEntity[];
 }

@@ -1,5 +1,5 @@
 export class Carrier {
-  constructor(name: string, service: string, deadline: string, price: string) {
+  constructor(name: string, service: string, deadline: string, price: number) {
     this.name = name;
     this.service = service;
     this.deadline = deadline;
@@ -9,7 +9,7 @@ export class Carrier {
   name: string;
   service: string;
   deadline: string;
-  price: string;
+  price: number;
 }
 
 export class CotacaoFreteOutput {
