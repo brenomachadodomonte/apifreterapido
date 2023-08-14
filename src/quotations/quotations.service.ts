@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Carrier, CreateQuotationOutput } from './dto/create-quotation.output';
 import { CreateQuotationInput } from './dto/create-quotation.input';
 import { FreterapidoService } from '../freterapido/freterapido.service';
+import { CotacaoFreteOutput } from '../freterapido/dto/cotacao-frete.output';
 
 @Injectable()
 export class QuotationsService {
@@ -12,18 +12,12 @@ export class QuotationsService {
 
   async createQuotation(
     input: CreateQuotationInput,
-  ): Promise<CreateQuotationOutput> {
+  ): Promise<CotacaoFreteOutput> {
     // Call FRETE RÁPIDO API
     const result = await this.freteRapidoService.callCotacaoFreteV3(input);
-    console.log(result);
+    //console.log(result);
     // SAVE RESULT DATABASE
     // RETURN DTO
-    const carrier = new Carrier();
-    carrier.service = 'teste';
-    carrier.name = input.recipient.address.zipcode;
-    const output = new CreateQuotationOutput();
-    output.carrier = [];
-    output.carrier.push(carrier);
-    return output;
+    return result;
   }
 }

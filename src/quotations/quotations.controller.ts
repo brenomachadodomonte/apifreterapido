@@ -2,7 +2,7 @@ import { Body, Controller, Get, Logger, Post, Query } from '@nestjs/common';
 import { QuotationsService } from './quotations.service';
 import { GetMetricsInput } from './dto/get-metrics.input';
 import { CreateQuotationInput } from './dto/create-quotation.input';
-import { CreateQuotationOutput } from './dto/create-quotation.output';
+import { CotacaoFreteOutput } from '../freterapido/dto/cotacao-frete.output';
 
 @Controller()
 export class QuotationsController {
@@ -12,7 +12,7 @@ export class QuotationsController {
   @Post('/quote')
   createQuotation(
     @Body() input: CreateQuotationInput,
-  ): Promise<CreateQuotationOutput> {
+  ): Promise<CotacaoFreteOutput> {
     this.logger.verbose(`POST /quote Body: ${JSON.stringify(input)}`);
     return this.service.createQuotation(input);
   }

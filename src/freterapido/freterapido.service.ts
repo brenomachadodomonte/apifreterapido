@@ -9,7 +9,7 @@ import {
 } from './dto/cotacao-frete.input';
 import { CreateQuotationInput } from '../quotations/dto/create-quotation.input';
 import { ConfigService } from '@nestjs/config';
-import { CotacaoFreteOutput } from './dto/cotacao-frete.output';
+import { Carrier, CotacaoFreteOutput } from './dto/cotacao-frete.output';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
@@ -32,9 +32,18 @@ export class FreterapidoService {
       const { data } = await firstValueFrom(
         this.httpService.post(url + path, input),
       );
-      //Mount data to output
-
-      console.log(data);
+      if (data.dispatchers && data.dispatchers[0].offers) {
+        output.request_id = data.dispatchers[0].request_id;
+        output.carrier = data.dispatchers[0].offers.map(
+          (offer) =>
+            new Carrier(
+              offer.carrier.name,
+              offer.service,
+              offer.delivery_time.days,
+              offer.final_price,
+            ),
+        );
+      }
     } catch (e) {
       this.logger.error(e.messageerror, e.stack);
     }
