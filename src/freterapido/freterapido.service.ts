@@ -39,7 +39,7 @@ export class FreterapidoService {
             new Carrier(
               offer.carrier.name,
               offer.service,
-              offer.delivery_time.days,
+              offer.delivery_time.days.toString(),
               offer.final_price,
             ),
         );
