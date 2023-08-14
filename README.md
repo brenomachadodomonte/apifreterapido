@@ -14,6 +14,9 @@ docker composer up -d
 ```
 OBS: As portas 3000 e 3306 devem estar disponíveis.
 
+## Swagger
+> http://localhost:3000/api
+
 ## Instalação
 
 ```bash
