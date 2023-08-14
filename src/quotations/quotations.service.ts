@@ -15,10 +15,6 @@ export class QuotationsService {
     private readonly freteRapidoService: FreterapidoService,
   ) {}
 
-  hello() {
-    return 'Hello Quotations';
-  }
-
   async createQuotation(
     input: CreateQuotationInput,
   ): Promise<CotacaoFreteOutput> {
