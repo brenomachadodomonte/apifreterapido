@@ -12,3 +12,15 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
+
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: frete-rapido-api
+    container_name: frete-rapido-api
+    platform: linux/amd64
+    depends_on:
+      - "database"
+    ports:
+      - "3000:3000"
