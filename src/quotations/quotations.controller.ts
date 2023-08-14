@@ -20,6 +20,6 @@ export class QuotationsController {
   @Get('/metrics')
   getQuotationMetrics(@Query() input: GetMetricsInput) {
     this.logger.verbose(`GET /metrics Query: ${JSON.stringify(input)}`);
-    return this.service.hello();
+    return this.service.getMetrics(input);
   }
 }
