@@ -1,6 +1,18 @@
 ## Descrição
 
-Back-end - Frete Rápido:
+API que consome cotações da API Frete Rápido.
+
+## Tecnologias
+- Linguagem: TypeScript - [Documentação](https://www.typescriptlang.org/)
+- Framework: NestJS - [Documentação](https://docs.nestjs.com/)
+- Banco de dados: MySQL - [Documentação](https://dev.mysql.com/doc/)
+
+## Executando com o Docker
+
+```bash
+docker composer up -d
+```
+OBS: As portas 3000 e 3306 devem estar disponíveis.
 
 ## Instalação
 
